@@ -2,7 +2,7 @@
 
 # This script uses data on the Photoautotrophy Zoox, Chl and genreates the first preliminary plots
 
-# Database generation. Stats. Plots vs light. 
+# Database generation. Stats. Plots vs light.
 
 
 # Extra info: There are outliers that need to be deleted or fixed such as for Bora_2 a Pachy speciosa at 90m that has 0 Chl2 (which is impossible) and others. 

@@ -1,0 +1,512 @@
+mutate_if(is.numeric, remove_outliers)
+meansample_poc
+resume_depth_island_poc <-ddply(morpho_poc,~Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_depth_island_poc)
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+require (ggplot2)
+require (dplyr)
+require (plyr)
+require (ggstatsplot)
+require (tidyverse)
+setwd("~/Documents/AAASea_Science/AAA_PhD_Thesis/Physio_Lab/Morphology")
+morpho_poc <- read.csv ("Morpho_Pocillopora_Final.csv", header = T, dec = ",", sep = ";")
+colnames (morpho_poc) <- c("Site", "Depth","ID","Size", "Distance","Part")
+str (morpho_poc)
+quan.var <- c("Depth", "Size", "Distance")
+morpho_poc [quan.var] <- sapply (morpho_poc [quan.var], as.numeric)
+summary(morpho_poc)
+resume_poc <-ddply(morpho_poc,~ID+Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_poc)
+##### STEP 2 -> mean and sd of the variables for EACH DEPTH AND ISLAND ----
+resume_depth_island_poc <-ddply(morpho_poc,~Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_depth_island_poc)
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+resume_poc$Depth <- as.factor (resume_poc$Depth)
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + facet_grid(cols = vars(Site)) +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75))
+setwd("~/Documents/AAASea_Science/AAA_PhD_Thesis/Physio_Lab/Morphology")
+morpho_poc <- read.csv ("Morpho_Pocillopora_Final.csv", header = T, dec = ",", sep = ";")
+colnames (morpho_poc) <- c("Site", "Depth","ID","Size", "Distance","Part")
+str (morpho_poc)
+quan.var <- c( "Size", "Distance")
+morpho_poc [quan.var] <- sapply (morpho_poc [quan.var], as.numeric)
+factor.var <- c("Depth")
+morpho_poc [factor.var] <- sapply (morpho_poc [factor.var], as.factor)
+summary(morpho_poc)
+resume_poc <-ddply(morpho_poc,~ID+Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_poc)
+##### STEP 2 -> mean and sd of the variables for EACH DEPTH AND ISLAND ----
+resume_depth_island_poc <-ddply(morpho_poc,~Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_depth_island_poc)
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+resume_poc$Depth <- as.factor (resume_poc$Depth)
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+setwd("~/Documents/AAASea_Science/AAA_PhD_Thesis/Physio_Lab/Morphology")
+morpho_poc <- read.csv ("Morpho_Pocillopora_Final.csv", header = T, dec = ",", sep = ";")
+colnames (morpho_poc) <- c("Site", "Depth","ID","Size", "Distance","Part")
+str (morpho_poc)
+quan.var <- c( "Size", "Distance")
+morpho_poc [quan.var] <- sapply (morpho_poc [quan.var], as.numeric)
+summary(morpho_poc)
+resume_poc <-ddply(morpho_poc,~ID+Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_poc)
+##### STEP 2 -> mean and sd of the variables for EACH DEPTH AND ISLAND ----
+resume_depth_island_poc <-ddply(morpho_poc,~Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_depth_island_poc)
+##### STEP 3 -> PLOT distance and size of corallites  ----
+resume_poc$Depth <- as.factor (resume_poc$Depth)
+## a) without distinction between basal and apical regions.
+# Considering boxplot with all sd from ID
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black")) +
+facet_grid(cols = vars(Site)) + ylab ("Distance (mm)") +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2)
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + facet_grid(cols = vars(Site)) +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75))
+resume_depth_island_poc$Depth <- as.factor (resume_depth_island_poc$Depth)
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + theme_bw() + facet_grid(cols = vars(Site)) +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() +   facet_grid(cols = vars(Site)) +
+stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun.y=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) +
+stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("distance (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text.x = element_text(face="bold", size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) +
+stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=depth, y=distance, color=part)) +
+geom_boxplot() + theme_bw() + facet_grid(part ~ site) +
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, colour="black", face="bold"),
+axis.title.x = element_text(size=11, colour="black",face="bold")) +
+ggtitle("Corallite spacing") + ylab("distance (mm)")
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, colour="black"),
+axis.title.y = element_text(size=11, colour="black", face="bold"),
+axis.title.x = element_text(size=11, colour="black",face="bold")) +
+ggtitle("Corallite spacing") + ylab("distance (mm)")
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Size)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Size)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Size (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Size)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite size") + ylab ("Size (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite dize") + ylab("Size (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite size") + ylab("Size (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+setwd("~/Documents/AAASea_Science/AAA_PhD_Thesis/Physio_Lab/Morphology")
+morpho_pac <- read.csv ("Morpho_Pachyseris_Final.csv", header = T, dec = ",", sep = ";")
+setwd("~/Documents/AAASea_Science/AAA_PhD_Thesis/Physio_Lab/Morphology")
+morpho_pac <- read.csv ("Morpho_Pachy_Final.csv", header = T, dec = ",", sep = ";")
+names (morpho_pac)
+colnames (morpho_pac) <- c("Site", "Depth","ID","Septa.Distance", "Width.Valley","Height.Septa")
+str (morpho_pac)
+quan.var <- c("Septa.Distance", "Width.Valley","Height.Septa")
+morpho_pac [quan.var] <- sapply (morpho_pac [quan.var], as.numeric)
+summary(morpho_pac)
+summary(morpho_pac)
+resume_pachy <-ddply(morpho_pac,~ID+Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.omit(x$width_valley)))})
+summary(resume_pachy)
+?sd
+resume_pachy <-ddply(morpho_pac,~ID+Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = FALSE,(x$width_valley)))})
+summary(resume_pachy)
+resume_depth_island_pachy <-ddply(morpho_pac,~Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = FALSE,(x$width_valley)))})
+summary(resume_depth_island_pachy)
+resume_pachy$Depth <- as.factor (resume_pachy$Depth)
+resume_depth_island_pachy$Depth <- as.factor (resume_depth_island_pachy$Depth)
+resume_pachy <-ddply(morpho_pac,~ID+Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = FALSE,(x$width_valley)))})
+summary(resume_pachy)
+######
+###### STEP 2 -> mean and sd of the variables for EACH DEPTH AND ISLAND ----
+######
+resume_depth_island_pachy <-ddply(morpho_pac,~Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = FALSE,(x$width_valley)))})
+summary(resume_depth_island_pachy)
+##### STEP 3 -> Plot the three variables
+resume_pachy$Depth <- as.factor (resume_pachy$Depth)
+resume_depth_island_pachy$Depth <- as.factor (resume_depth_island_pachy$Depth)
+ggplot(resume_pachy, aes(x=Depth, y=Septa.Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Septa distance") + ylab ("Septa distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+gplot(resume_pachy, aes(x=Depth, y=Septa.Distance)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ site, scales = "free_x") +
+ggtitle("Septa spacing") + ylab("septa spacing (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_pachy, aes(x=Depth, y=Septa.Distance)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ site, scales = "free_x") +
+ggtitle("Septa spacing") + ylab("septa spacing (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+#### 1) SEPTA SPACING ----
+ggplot(resume_pachy, aes(x=Depth, y=Septa.Distance)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Septa spacing") + ylab("septa spacing (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_pachy, aes(x=Depth, y=Septa.Distance)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Septa spacing") + ylab("septa spacing (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_pachy, aes(x=Depth, y=Width.Valley)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Valley width") + ylab("valley width (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_pachy, aes(x=Depth, y=Width.Valley)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Valley width") + ylab("valley width (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_pachy, aes(x=Depth, y=Height.Septa)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Height.Septa") + ylab("Height.Septa (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_pachy, aes(x=Depth, y=Height.Septa)) +
+geom_boxplot() + theme_bw() + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+facet_grid(. ~ Site, scales = "free_x") +
+ggtitle("Height.Septa") + ylab("Height.Septa (mm)") +
+theme(plot.title = element_text(hjust=0.5, size=14, face="bold"),
+axis.text.x = element_text(size=10, colour="black"),
+axis.text.y = element_text(size=9, face="bold", colour="black"),
+axis.title.y = element_text(size=11, face="bold", colour="black"),
+axis.title.x = element_text(size=11, face="bold", colour="black"))
+remove_outliers <- function(x, k = 1.5, na.rm = TRUE, ...) {
+quar <- quantile(x, probs = c(0.25, 0.75), na.rm = na.rm, ...)
+iqr <- diff(quar)
+y <- x
+y[x < (quar[1] - k * iqr)] <- NA
+y[x > (quar[2] + k * iqr)] <- NA
+y
+}
+resume_poc<- resume_poc %>%
+group_by_at(vars(Site, Depth, Part)) %>%
+mutate_if(is.numeric, remove_outliers)
+resume_poc
+morpho_poc<- morpho_poc %>%
+group_by_at(vars(Site, Depth, Part, ID)) %>%
+mutate_if(is.numeric, remove_outliers)
+morpho_poc
+View(morpho_poc)
+resume_poc <-ddply(morpho_poc,~ID+Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_poc)
+##### STEP 2 -> mean and sd of the variables for EACH DEPTH AND ISLAND ----
+resume_depth_island_poc <-ddply(morpho_poc,~Depth+Site+Part,function(x){c(Size=mean(na.omit(x$Size)), Distance=mean(na.omit(x$Distance)), Size_sd=sd(na.omit(x$Size)), Distance_sd=sd(na.omit(x$Distance)))})
+summary(resume_depth_island_poc)
+##### STEP 3 -> PLOT distance and size of corallites  ----
+resume_poc$Depth <- as.factor (resume_poc$Depth)
+resume_depth_island_poc$Depth <- as.factor (resume_depth_island_poc$Depth)
+# morpho_poc$Depth <- factor(morpho_poc$Depth,levels = c('6', '20', '40', '60'),ordered = TRUE)
+# morpho_pocnew$depth <- factor(morpho_pocnew$depth,levels = c('6', '20', '40', '60'),ordered = TRUE)
+# meansample_poc$depth<- factor(meansample_poc$depth,levels = c('6', '20', '40', '60'),ordered = TRUE)
+# meansample_pocnew$depth<- factor(meansample_pocnew$depth,levels = c('6', '20', '40', '60'),ordered = TRUE)
+#### 1) Plot of distance
+## a) without distinction between basal and apical regions.
+# Considering boxplot with all sd from ID
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) +
+stat_summary(fun=mean, geom="point", shape=18, color="red", size=2, position=position_dodge(width=0.75)) +
+theme_bw() + ggtitle("Corallite spacing") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite spacing") + ylab("Distance (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Size)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite size") + ylab ("Size (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Size)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite size") + ylab ("Size (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite size") + ylab("Size (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, color=Part)) +
+geom_boxplot() + theme_bw() + facet_grid(Part ~ Site) +
+ggtitle("Corallite size") + ylab("Size (mm)") + xlab ("Depth (m)")
+theme(plot.title = element_text(hjust=0.5, size=10, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x=Depth, y=Distance)) +
+geom_boxplot() + facet_grid(cols = vars(Site)) + stat_summary(fun=mean, geom="point", shape=18, color="red", size=2) +
+theme_bw() + ggtitle("Corallite spacing") + geom_jitter(shape=16, position=position_jitter(0.2)) +
+scale_color_manual(values=c("grey35", "deepskyblue3")) + ylab ("Distance (mm)") + xlab ("Depth (m)") +
+theme(plot.title = element_text(hjust=0.5, size=12, face="bold"),
+axis.text = element_text(size=10, colour="black"),
+axis.title = element_text(size=11, face="bold", colour="black"))
+ggplot(resume_poc, aes(x = Depth, y = Distance, fill=Part)) +
+geom_bar(stat="identity",position=position_dodge()) +
+facet_grid(. ~ Site) +
+scale_fill_manual(values=c("gray55","gray5"))+
+theme_bw() +
+geom_errorbar(aes(ymin=Distance-Distance_sd,ymax=Distance+Distance_sd), width=.4, position=position_dodge(0.9))
+ggplot(resume_depth_island_poc, aes(x = Depth, y = Distance, fill=Part)) +
+geom_bar(stat="identity",position=position_dodge()) +
+facet_grid(. ~ Site) +
+scale_fill_manual(values=c("gray55","gray5"))+
+theme_bw() +
+geom_errorbar(aes(ymin=Distance-Distance_sd,ymax=Distance+Distance_sd), width=.4, position=position_dodge(0.9))
+ggplot(resume_depth_island_poc, aes(x=Depth, y=Distance, col=Part)) +
+geom_point() + geom_line() + facet_grid(. ~ Site)+ theme_bw() +
+geom_errorbar(aes(ymin=Distance-Distance_sd, ymax=Distance+Distance_sd), width=.005,position=position_dodge())
+morpho_basal <- morpho_poc %>% filter(Part == "basal")
+ggplot(mean_basal, aes(x=Distance, color=Depth, fill=Depth)) +
+geom_histogram(aes(y=..density..), position="identity", alpha=0.4, binwidth = 0.035)+
+geom_density(alpha=0.7)+
+theme_bw()
+mean_basal <- resume_depth_island_poc %>% filter(Part == "basal")
+ggplot(mean_basal, aes(x=Distance, color=Depth, fill=Depth)) +
+geom_histogram(aes(y=..density..), position="identity", alpha=0.4, binwidth = 0.035)+
+geom_density(alpha=0.7)+
+theme_bw()
+View(resume_poc)
+View(resume_depth_island_poc)
+View(resume_poc)
+names (resume_poc)
+resume_poc %>%
+group_by(ID, DEpth, Site, Par) %>%
+summarise_each(funs(mean))
+resume_poc %>%
+group_by(ID, Depth, Site, Part) %>%
+summarise_each(funs(mean))
+Morpho_Pocillopora <- aggregate (.~ ID + Depth + Site + Part , resume_poc, mean)
+View(Morpho_Pocillopora)
+a <- resume_poc %>%
+group_by(ID, Depth, Site, Part) %>%
+summarise_each(funs(mean))
+Pocillopora_morpho_features <- resume_poc %>%
+group_by(ID, Depth, Site, Part) %>%
+summarise_each(funs(mean))
+?write_csv
+write_csv(Pocillopora_morpho_features, "Pocillopora_morpho_features.csv")
+Pachyseris_morpho_features <- resume_pachy %>%
+group_by(ID, Depth, Site) %>%
+summarise_each(funs(mean))
+Pachyseris_morpho_features <- aggregate (.~ ID + Depth + Site, resume_pachy, mean)
+resume_pachy <-ddply(morpho_pac,~ID+Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = FALSE,(x$width_valley)))})
+summary(resume_pachy)
+Pachyseris_morpho_features <- aggregate (.~ ID + Depth + Site, resume_pachy, mean)
+Pachyseris_morpho_features <- resume_pachy %>%
+group_by(ID, Depth, Site) %>%
+summarise_each(funs(mean))
+View(Pachyseris_morpho_features)
+resume_depth_island_pachy <-ddply(morpho_pac,~Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = T,(x$width_valley)))})
+summary(resume_depth_island_pachy)
+resume_depth_island_pachy <-ddply(morpho_pac,~Depth+Site,function(x){c(Septa.Distance=mean(na.omit(x$Septa.Distance)), Width.Valley=mean(na.omit(x$Width.Valley)), Height.Septa=mean(na.omit(x$Height.Septa)), septa_sd=sd(na.omit(x$septa_dist)), height_sd=sd(na.omit(x$height_septa)), valley_sd=sd(na.rm = T,(x$width_valley)))})

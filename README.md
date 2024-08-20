@@ -2,7 +2,7 @@
 Data and codes for Perez-Rosales et al 2024_Coral Reefs
 
 
-Title: 
+Title: Differential strategies developed by two light-dependent scleractinian corals to extend their vertical range to mesophotic depths
 DOI: 
 
 This repository contains the necessary codes to run the statistics and figures necessary to replicate the study. 
